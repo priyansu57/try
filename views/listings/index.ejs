@@ -1,0 +1,160 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<style>
+    #filters{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+
+    }
+    .filter{
+        text-align: center;
+        margin-top: 2rem;
+        margin-left: 2rem;
+        font-size: 1rem;
+        opacity: 0.7;
+    }
+    .filter:hover{
+        opacity: 1;
+        cursor: pointer;
+    }
+    
+</style>
+<div id="filters">
+
+
+    <div class="filter">
+        <div><i class="fa-solid fa-tractor"></i></div>
+        <p>Farms</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-ticket-simple"></i></div>
+        <p>icons</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-regular fa-snowflake"></i></div>
+        <p>Arctics</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-person-shelter"></i></div>
+        <p>Rooms</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Top cities</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-caravan"></i></div>
+        <p>Camper van</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-key"></i></div>
+        <p>New</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-golf-ball-tee"></i></div>
+        <p>Golfing</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-chess-queen"></i></div>
+        <p>chef's kichens</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-parachute-box"></i></div>
+        <p>Parachuting</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-umbrella-beach"></i></div>
+        <p>Beach's</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Castels</p>
+    </div>
+
+    <div class="filter">
+        <div><i class="fa-solid fa-wheelchair-move"></i></div>
+        <p>Adapted</p>
+    </div>
+
+
+    <div class="tax-toggle">
+        <div class="form-check-reveres form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Display total before taxes</label>
+          </div>
+    </div>
+    
+</div>
+ 
+<body>
+    <h3>All listings </h3>
+    <!-- <form method="get" action="/listings/new">
+        <button>Create New Listing</button>
+    </form> -->
+    <div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+        <% for (let listing of allListings) {%> 
+                <a href="/listings/<%= listing._id %>" class="listing-link">  
+                    <div class="card col  listing-card" >
+                        <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+                        <div class="card-img-overlay"></div>
+                        <div class="card-body">
+                        <p class="card-text">
+                        <b><%= listing.title %> </b> <br>
+                        
+                         <i class="tax-after"> &#8377; <%= listing.price.toLocaleString("en-IN") %> /night</i>
+                          <i class="tax-before">  &#8377; <%= listing.price+(listing.price * 0.18) %> per Night</i> 
+                        
+                        </p>
+                        </div>
+                
+                    </div>
+                </a>     
+              <% } %>
+    </div>
+    
+    
+</body>
+
+
+<script>
+    let texSwitch = document.getElementById("flexSwitchCheckDefault");
+    texSwitch.addEventListener("click", () =>{
+        let taxinfo = document.getElementsByClassName("tax-before");
+        let taxinfoafter = document.getElementsByClassName("tax-after");
+        for(info of taxinfo){
+            if(info.style.display != "inline"){
+            info.style.display = "inline"
+            }else{
+                info.style.display = "none"
+
+            }
+         }
+         for(info1 of taxinfoafter){
+            if(info1.style.display != "none"){
+            info1.style.display = "none"
+            }else{
+                info1.style.display = "inline"
+
+            }
+         }
+        
+        }
+    )
+
+</script>
