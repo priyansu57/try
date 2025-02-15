@@ -33,7 +33,7 @@ main().then(() =>{
 });
 
 async function main() {
-    await mongoose.connect(atlasdatabase);
+    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
 }
 
 
@@ -43,7 +43,7 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo');
 
 const store = MongoStore.create({
-    mongoUrl : atlasdatabase,
+    mongoUrl : 'mongodb://127.0.0.1:27017/wanderlust',
     crypto :{
         secret : process.env.SECRET,
     },
